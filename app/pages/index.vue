@@ -2,7 +2,7 @@
   <div>
     <!-- Hero Section -->
     <section class="relative bg-gradient-to-br from-emerald-700 via-emerald-600 to-green-700 text-white overflow-hidden">
-      <div class="absolute inset-0 bg-black/20"></div>
+      <div class="absolute inset-0 bg-black/20"/>
       <div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-20 md:py-28">
         <div class="text-center">
           <h1 class="text-4xl md:text-6xl font-bold mb-6 leading-tight">
@@ -51,7 +51,7 @@
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           <div class="group cursor-pointer">
             <div class="relative overflow-hidden rounded-lg bg-emerald-100 aspect-square">
-              <div class="absolute inset-0 bg-gradient-to-br from-emerald-500 to-green-600 opacity-90"></div>
+              <div class="absolute inset-0 bg-gradient-to-br from-emerald-500 to-green-600 opacity-90"/>
               <div class="relative p-6 h-full flex flex-col justify-center items-center text-center">
                 <UIcon name="i-lucide-mountain" class="w-12 h-12 text-white mb-4" />
                 <h3 class="text-xl font-bold text-white mb-2">Mountaineering</h3>
@@ -62,7 +62,7 @@
 
           <div class="group cursor-pointer">
             <div class="relative overflow-hidden rounded-lg bg-blue-100 aspect-square">
-              <div class="absolute inset-0 bg-gradient-to-br from-blue-500 to-indigo-600 opacity-90"></div>
+              <div class="absolute inset-0 bg-gradient-to-br from-blue-500 to-indigo-600 opacity-90"/>
               <div class="relative p-6 h-full flex flex-col justify-center items-center text-center">
                 <UIcon name="i-lucide-tent" class="w-12 h-12 text-white mb-4" />
                 <h3 class="text-xl font-bold text-white mb-2">Camping</h3>
@@ -73,7 +73,7 @@
 
           <div class="group cursor-pointer">
             <div class="relative overflow-hidden rounded-lg bg-amber-100 aspect-square">
-              <div class="absolute inset-0 bg-gradient-to-br from-amber-500 to-orange-600 opacity-90"></div>
+              <div class="absolute inset-0 bg-gradient-to-br from-amber-500 to-orange-600 opacity-90"/>
               <div class="relative p-6 h-full flex flex-col justify-center items-center text-center">
                 <UIcon name="i-lucide-footprints" class="w-12 h-12 text-white mb-4" />
                 <h3 class="text-xl font-bold text-white mb-2">Hiking</h3>
@@ -84,7 +84,7 @@
 
           <div class="group cursor-pointer">
             <div class="relative overflow-hidden rounded-lg bg-purple-100 aspect-square">
-              <div class="absolute inset-0 bg-gradient-to-br from-purple-500 to-pink-600 opacity-90"></div>
+              <div class="absolute inset-0 bg-gradient-to-br from-purple-500 to-pink-600 opacity-90"/>
               <div class="relative p-6 h-full flex flex-col justify-center items-center text-center">
                 <UIcon name="i-lucide-shirt" class="w-12 h-12 text-white mb-4" />
                 <h3 class="text-xl font-bold text-white mb-2">Pakaian</h3>

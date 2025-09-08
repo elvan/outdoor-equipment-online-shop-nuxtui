@@ -44,7 +44,7 @@
                 <div 
                   class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-emerald-500 transition-all duration-500"
                   :style="{ width: `${Math.min(100, (cartSummary.subtotal / 500000) * 100)}%` }"
-                ></div>
+                />
               </div>
             </div>
             <p class="text-sm text-emerald-700 mt-2">
@@ -107,11 +107,11 @@
 
                     <!-- Remove Button -->
                     <UButton
-                      @click="removeFromCart(item.id)"
                       color="red"
                       variant="ghost"
                       size="sm"
                       icon="i-lucide-trash-2"
+                      @click="removeFromCart(item.id)"
                     />
                   </div>
 
@@ -122,23 +122,23 @@
                       <span class="text-sm text-gray-600">Jumlah:</span>
                       <div class="flex items-center border border-gray-300 rounded-lg">
                         <UButton
-                          @click="updateItemQuantity(item.id, item.quantity - 1)"
                           :disabled="item.quantity <= 1"
                           color="gray"
                           variant="ghost"
                           size="sm"
                           icon="i-lucide-minus"
+                          @click="updateItemQuantity(item.id, item.quantity - 1)"
                         />
                         <span class="px-4 py-2 text-lg font-medium min-w-[60px] text-center">
                           {{ item.quantity }}
                         </span>
                         <UButton
-                          @click="updateItemQuantity(item.id, item.quantity + 1)"
                           :disabled="item.quantity >= getMaxQuantity(item)"
                           color="gray"
                           variant="ghost"
                           size="sm"
                           icon="i-lucide-plus"
+                          @click="updateItemQuantity(item.id, item.quantity + 1)"
                         />
                       </div>
                       <span class="text-xs text-gray-500">Max {{ getMaxQuantity(item) }}</span>
@@ -169,7 +169,7 @@
               Lanjut Belanja
             </UButton>
             
-            <UButton @click="clearCart" variant="outline" color="red" size="lg">
+            <UButton variant="outline" color="red" size="lg" @click="clearCart">
               <UIcon name="i-lucide-trash-2" class="w-4 h-4 mr-2" />
               Kosongkan Keranjang
             </UButton>
@@ -207,10 +207,10 @@
 
             <!-- Checkout Button -->
             <UButton 
-              @click="proceedToCheckout" 
               color="emerald" 
               size="xl" 
-              class="w-full mt-6"
+              class="w-full mt-6" 
+              @click="proceedToCheckout"
             >
               <UIcon name="i-lucide-shopping-bag" class="w-5 h-5 mr-2" />
               Checkout

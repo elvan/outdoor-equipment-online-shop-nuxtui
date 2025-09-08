@@ -24,9 +24,9 @@
         <slot name="actions">
           <UButton 
             v-if="showRetry"
-            @click="$emit('retry')"
             color="emerald"
             :size="buttonSize"
+            @click="$emit('retry')"
           >
             <UIcon name="i-lucide-refresh-cw" class="w-4 h-4 mr-2" />
             Coba Lagi

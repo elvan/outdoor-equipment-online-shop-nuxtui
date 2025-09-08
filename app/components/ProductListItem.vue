@@ -88,8 +88,8 @@
                 color="gray"
                 variant="ghost"
                 square
-                @click.prevent="toggleWishlist"
                 class="ml-4"
+                @click.prevent="toggleWishlist"
               />
             </div>
           </div>
@@ -134,6 +134,15 @@
             <!-- Action Buttons -->
             <div class="flex items-center gap-3">
               <UButton
+                :icon="productInWishlist ? 'i-lucide-heart' : 'i-lucide-heart'"
+                :class="productInWishlist ? 'text-red-500' : ''"
+                variant="outline"
+                color="gray"
+                size="md"
+                square
+                @click="toggleWishlist"
+              />
+              <UButton
                 variant="outline"
                 color="emerald"
                 size="md"
@@ -168,6 +177,10 @@ interface Props {
 
 const props = defineProps<Props>()
 
+// Use composables
+const { addToCart: addToCartAction } = useCart()
+const { toggleWishlist: toggleWishlistAction, isInWishlist } = useWishlist()
+
 // Category name mapping
 const getCategoryName = (category: string) => {
   const categoryNames = {
@@ -180,15 +193,16 @@ const getCategoryName = (category: string) => {
   return categoryNames[category] || category
 }
 
+// Computed
+const productInWishlist = computed(() => isInWishlist(props.product.id))
+
 // Actions
 const toggleWishlist = () => {
-  // TODO: Implement wishlist functionality
-  console.log('Toggle wishlist for product:', props.product.id)
+  toggleWishlistAction(props.product)
 }
 
 const addToCart = () => {
-  // TODO: Implement add to cart functionality
-  console.log('Add to cart:', props.product.id)
+  addToCartAction(props.product, 1)
 }
 
 const viewProduct = () => {

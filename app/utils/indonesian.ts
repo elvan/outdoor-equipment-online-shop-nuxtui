@@ -72,7 +72,7 @@ export function formatIndonesianPhone(phone: string): string {
   const cleaned = phone.replace(/\D/g, '')
   
   // Convert to +62 format if starts with 0
-  let formatted = cleaned.startsWith('0') ? '62' + cleaned.slice(1) : cleaned
+  const formatted = cleaned.startsWith('0') ? '62' + cleaned.slice(1) : cleaned
   
   // Add formatting
   if (formatted.startsWith('62')) {

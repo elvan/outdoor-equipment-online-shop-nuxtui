@@ -22,24 +22,24 @@
               <!-- View Toggle -->
               <div class="flex bg-gray-100 rounded-lg p-1">
                 <button
-                  @click="viewMode = 'grid'"
                   :class="[
                     'px-3 py-2 rounded-md text-sm font-medium transition-colors',
                     viewMode === 'grid'
                       ? 'bg-white text-gray-900 shadow-sm'
                       : 'text-gray-500 hover:text-gray-700'
                   ]"
+                  @click="viewMode = 'grid'"
                 >
                   <UIcon name="i-lucide-grid-3x3" class="w-4 h-4" />
                 </button>
                 <button
-                  @click="viewMode = 'list'"
                   :class="[
                     'px-3 py-2 rounded-md text-sm font-medium transition-colors',
                     viewMode === 'list'
                       ? 'bg-white text-gray-900 shadow-sm'
                       : 'text-gray-500 hover:text-gray-700'
                   ]"
+                  @click="viewMode = 'list'"
                 >
                   <UIcon name="i-lucide-list" class="w-4 h-4" />
                 </button>
@@ -63,11 +63,11 @@
               <div class="space-y-2">
                 <label v-for="category in categories" :key="category.id" class="flex items-center">
                   <input 
-                    type="checkbox" 
+                    v-model="selectedCategories" 
+                    type="checkbox"
                     :value="category.id"
-                    v-model="selectedCategories"
                     class="rounded border-gray-300 text-emerald-600 focus:ring-emerald-500"
-                  />
+                  >
                   <span class="ml-2 text-sm text-gray-700">{{ category.name }}</span>
                   <span class="ml-auto text-xs text-gray-500">({{ category.productCount }})</span>
                 </label>
@@ -80,38 +80,38 @@
               <div class="space-y-2">
                 <label class="flex items-center">
                   <input 
-                    type="checkbox" 
+                    v-model="selectedPriceRanges" 
+                    type="checkbox"
                     value="0-500000"
-                    v-model="selectedPriceRanges"
                     class="rounded border-gray-300 text-emerald-600 focus:ring-emerald-500"
-                  />
+                  >
                   <span class="ml-2 text-sm text-gray-700">Di bawah Rp 500.000</span>
                 </label>
                 <label class="flex items-center">
                   <input 
-                    type="checkbox" 
+                    v-model="selectedPriceRanges" 
+                    type="checkbox"
                     value="500000-1000000"
-                    v-model="selectedPriceRanges"
                     class="rounded border-gray-300 text-emerald-600 focus:ring-emerald-500"
-                  />
+                  >
                   <span class="ml-2 text-sm text-gray-700">Rp 500.000 - Rp 1.000.000</span>
                 </label>
                 <label class="flex items-center">
                   <input 
-                    type="checkbox" 
+                    v-model="selectedPriceRanges" 
+                    type="checkbox"
                     value="1000000-2000000"
-                    v-model="selectedPriceRanges"
                     class="rounded border-gray-300 text-emerald-600 focus:ring-emerald-500"
-                  />
+                  >
                   <span class="ml-2 text-sm text-gray-700">Rp 1.000.000 - Rp 2.000.000</span>
                 </label>
                 <label class="flex items-center">
                   <input 
-                    type="checkbox" 
+                    v-model="selectedPriceRanges" 
+                    type="checkbox"
                     value="2000000-999999999"
-                    v-model="selectedPriceRanges"
                     class="rounded border-gray-300 text-emerald-600 focus:ring-emerald-500"
-                  />
+                  >
                   <span class="ml-2 text-sm text-gray-700">Di atas Rp 2.000.000</span>
                 </label>
               </div>
@@ -123,11 +123,11 @@
               <div class="space-y-2">
                 <label v-for="brand in brands" :key="brand" class="flex items-center">
                   <input 
-                    type="checkbox" 
+                    v-model="selectedBrands" 
+                    type="checkbox"
                     :value="brand"
-                    v-model="selectedBrands"
                     class="rounded border-gray-300 text-emerald-600 focus:ring-emerald-500"
-                  />
+                  >
                   <span class="ml-2 text-sm text-gray-700">{{ brand }}</span>
                 </label>
               </div>
@@ -135,11 +135,11 @@
 
             <!-- Clear Filters -->
             <UButton
-              @click="clearFilters"
               variant="outline"
               color="gray"
               size="sm"
               class="w-full"
+              @click="clearFilters"
             >
               Hapus Semua Filter
             </UButton>

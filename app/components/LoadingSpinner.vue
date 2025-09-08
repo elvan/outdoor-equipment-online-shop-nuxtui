@@ -5,14 +5,14 @@
       <div 
         :class="spinnerClass"
         class="animate-spin rounded-full border-solid border-t-transparent"
-      ></div>
+      />
       
       <!-- Center dot -->
       <div 
         v-if="showCenterDot"
         :class="dotClass"
         class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 rounded-full bg-current opacity-30"
-      ></div>
+      />
     </div>
     
     <!-- Loading text -->

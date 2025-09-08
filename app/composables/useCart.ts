@@ -22,7 +22,7 @@ const CART_STORAGE_KEY = 'puncak-adventura-cart'
 export const useCart = () => {
   // Load cart from localStorage on initialization
   const loadCartFromStorage = () => {
-    if (process.client) {
+    if (import.meta.client) {
       try {
         const savedCart = localStorage.getItem(CART_STORAGE_KEY)
         if (savedCart) {
@@ -37,7 +37,7 @@ export const useCart = () => {
 
   // Save cart to localStorage
   const saveCartToStorage = () => {
-    if (process.client) {
+    if (import.meta.client) {
       try {
         localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(cartState.value))
       } catch (error) {

@@ -1,9 +1,10 @@
 <template>
   <!-- Overlay -->
-  <div v-if="isOpen" class="fixed inset-0 bg-black/50 z-40 transition-opacity" @click="isOpen = false"></div>
+  <div v-if="isOpen" class="fixed inset-0 bg-black/50 z-40 transition-opacity" @click="isOpen = false"/>
 
   <!-- Sidebar -->
-  <div :class="[
+  <div
+:class="[
     'fixed top-0 right-0 h-full w-96 bg-white shadow-xl z-50 transform transition-transform duration-300 ease-in-out',
     isOpen ? 'translate-x-0' : 'translate-x-full'
   ]">
@@ -27,7 +28,7 @@
           <UIcon name="i-lucide-shopping-cart" class="w-16 h-16 text-gray-300 mb-4" />
           <h4 class="text-lg font-medium text-gray-900 mb-2">Keranjang Kosong</h4>
           <p class="text-gray-600 mb-6">Belum ada produk yang ditambahkan ke keranjang</p>
-          <UButton @click="$emit('close')" to="/products" color="emerald">
+          <UButton to="/products" color="emerald" @click="$emit('close')">
             Mulai Belanja
           </UButton>
         </div>
@@ -63,7 +64,8 @@
                     <span class="text-sm font-semibold text-emerald-600">
                       {{ formatIDR(item.price) }}
                     </span>
-                    <span v-if="item.product.originalPrice && item.product.originalPrice > item.price"
+                    <span
+v-if="item.product.originalPrice && item.product.originalPrice > item.price"
                       class="text-xs text-gray-500 line-through ml-2">
                       {{ formatIDR(item.product.originalPrice) }}
                     </span>
@@ -71,19 +73,22 @@
                 </div>
 
                 <!-- Remove Button -->
-                <UButton @click="removeFromCart(item.id)" color="red" variant="ghost" size="xs"
-                  icon="i-lucide-trash-2" />
+                <UButton
+color="red" variant="ghost" size="xs" icon="i-lucide-trash-2"
+                  @click="removeFromCart(item.id)" />
               </div>
 
               <!-- Quantity Controls -->
               <div class="flex items-center justify-between mt-3">
                 <div class="flex items-center space-x-2">
-                  <UButton @click="updateItemQuantity(item.id, item.quantity - 1)" :disabled="item.quantity <= 1"
-                    color="gray" variant="outline" size="xs" icon="i-lucide-minus" />
+                  <UButton
+:disabled="item.quantity <= 1" color="gray"
+                    variant="outline" size="xs" icon="i-lucide-minus" @click="updateItemQuantity(item.id, item.quantity - 1)" />
                   <span class="text-sm font-medium min-w-[30px] text-center">{{ item.quantity }}</span>
-                  <UButton @click="updateItemQuantity(item.id, item.quantity + 1)"
-                    :disabled="item.quantity >= getMaxQuantity(item)" color="gray" variant="outline" size="xs"
-                    icon="i-lucide-plus" />
+                  <UButton
+:disabled="item.quantity >= getMaxQuantity(item)"
+                    color="gray" variant="outline" size="xs" icon="i-lucide-plus"
+                    @click="updateItemQuantity(item.id, item.quantity + 1)" />
                 </div>
                 <div class="text-sm font-semibold text-gray-900">
                   {{ formatIDR(item.totalPrice) }}
@@ -96,15 +101,17 @@
         <!-- Footer -->
         <div v-if="!isEmpty" class="border-t border-gray-200 p-6 space-y-4">
           <!-- Free Shipping Progress -->
-          <div v-if="!cartSummary.freeShippingEligible && cartSummary.freeShippingRemaining > 0"
+          <div
+v-if="!cartSummary.freeShippingEligible && cartSummary.freeShippingRemaining > 0"
             class="bg-emerald-50 rounded-lg p-3">
             <div class="flex items-center justify-between text-sm mb-2">
               <span class="text-emerald-700 font-medium">Gratis Ongkir</span>
               <span class="text-emerald-600">{{ formatIDR(cartSummary.freeShippingRemaining) }} lagi</span>
             </div>
             <div class="w-full bg-emerald-200 rounded-full h-2">
-              <div class="bg-emerald-600 h-2 rounded-full transition-all duration-300"
-                :style="{ width: `${Math.min(100, (cartSummary.subtotal / 500000) * 100)}%` }"></div>
+              <div
+class="bg-emerald-600 h-2 rounded-full transition-all duration-300"
+                :style="{ width: `${Math.min(100, (cartSummary.subtotal / 500000) * 100)}%` }"/>
             </div>
             <p class="text-xs text-emerald-700 mt-1">
               Belanja {{ formatIDR(cartSummary.freeShippingRemaining) }} lagi untuk gratis ongkir!
@@ -144,17 +151,17 @@
 
           <!-- Action Buttons -->
           <div class="space-y-3">
-            <UButton @click="viewCart" size="lg" variant="outline" color="emerald" class="w-full">
+            <UButton size="lg" variant="outline" color="emerald" class="w-full" @click="viewCart">
               Lihat Keranjang
             </UButton>
-            <UButton @click="proceedToCheckout" size="lg" color="emerald" class="w-full">
+            <UButton size="lg" color="emerald" class="w-full" @click="proceedToCheckout">
               Checkout ({{ formatIDR(cartSummary.total) }})
             </UButton>
           </div>
 
           <!-- Continue Shopping -->
           <div class="text-center">
-            <button @click="continueShopping" class="text-sm text-gray-600 hover:text-emerald-600 transition-colors">
+            <button class="text-sm text-gray-600 hover:text-emerald-600 transition-colors" @click="continueShopping">
               ← Lanjut Belanja
             </button>
           </div>

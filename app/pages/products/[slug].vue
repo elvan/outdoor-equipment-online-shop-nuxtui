@@ -42,8 +42,8 @@
 
             <!-- Wishlist Button -->
             <button
-              @click="toggleWishlist"
               class="absolute top-4 right-4 w-10 h-10 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white transition-colors shadow-sm"
+              @click="toggleWishlist"
             >
               <UIcon 
                 name="i-lucide-heart" 
@@ -128,7 +128,6 @@
                 <button
                   v-for="size in product.variants.size"
                   :key="size.id"
-                  @click="selectedVariants.size = size.id"
                   :disabled="size.stock === 0"
                   :class="[
                     'px-4 py-2 border rounded-lg text-sm font-medium transition-colors',
@@ -138,6 +137,7 @@
                       ? 'border-gray-200 bg-gray-100 text-gray-400 cursor-not-allowed'
                       : 'border-gray-300 text-gray-700 hover:border-emerald-300'
                   ]"
+                  @click="selectedVariants.size = size.id"
                 >
                   {{ size.name }}
                   {{ size.stock === 0 ? '(Habis)' : '' }}
@@ -152,7 +152,6 @@
                 <button
                   v-for="color in product.variants.color"
                   :key="color.id"
-                  @click="selectedVariants.color = color.id"
                   :disabled="color.stock === 0"
                   :class="[
                     'px-4 py-2 border rounded-lg text-sm font-medium transition-colors',
@@ -162,6 +161,7 @@
                       ? 'border-gray-200 bg-gray-100 text-gray-400 cursor-not-allowed'
                       : 'border-gray-300 text-gray-700 hover:border-emerald-300'
                   ]"
+                  @click="selectedVariants.color = color.id"
                 >
                   {{ color.name }}
                   {{ color.stock === 0 ? '(Habis)' : '' }}
@@ -176,7 +176,6 @@
                 <button
                   v-for="model in product.variants.model"
                   :key="model.id"
-                  @click="selectedVariants.model = model.id"
                   :disabled="model.stock === 0"
                   :class="[
                     'px-4 py-2 border rounded-lg text-sm font-medium transition-colors',
@@ -186,6 +185,7 @@
                       ? 'border-gray-200 bg-gray-100 text-gray-400 cursor-not-allowed'
                       : 'border-gray-300 text-gray-700 hover:border-emerald-300'
                   ]"
+                  @click="selectedVariants.model = model.id"
                 >
                   {{ model.name }}
                   {{ model.stock === 0 ? '(Habis)' : '' }}
@@ -221,17 +221,17 @@
             <div class="flex items-center space-x-4">
               <div class="flex items-center border border-gray-300 rounded-lg">
                 <button
-                  @click="decreaseQuantity"
                   :disabled="quantity <= 1"
                   class="p-2 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
+                  @click="decreaseQuantity"
                 >
                   <UIcon name="i-lucide-minus" class="w-4 h-4" />
                 </button>
                 <span class="px-4 py-2 text-lg font-medium min-w-[60px] text-center">{{ quantity }}</span>
                 <button
-                  @click="increaseQuantity"
                   :disabled="quantity >= availableStock || product.availability === 'out-of-stock'"
                   class="p-2 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
+                  @click="increaseQuantity"
                 >
                   <UIcon name="i-lucide-plus" class="w-4 h-4" />
                 </button>
@@ -242,22 +242,22 @@
             <!-- Action Buttons -->
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <UButton
-                @click="addToCart"
                 :disabled="!canAddToCart"
                 color="emerald"
                 size="xl"
                 class="w-full"
+                @click="addToCart"
               >
                 <UIcon name="i-lucide-shopping-cart" class="w-5 h-5 mr-2" />
                 {{ product.availability === 'out-of-stock' ? 'Stok Habis' : 'Tambah ke Keranjang' }}
               </UButton>
               <UButton
-                @click="buyNow"
                 :disabled="!canAddToCart"
                 variant="outline"
                 color="emerald"
                 size="xl"
                 class="w-full"
+                @click="buyNow"
               >
                 Beli Sekarang
               </UButton>
@@ -266,10 +266,10 @@
             <!-- WhatsApp Contact -->
             <div class="text-center">
               <UButton
-                @click="contactWhatsApp"
                 variant="soft"
                 color="green"
                 size="sm"
+                @click="contactWhatsApp"
               >
                 <UIcon name="i-simple-icons-whatsapp" class="w-4 h-4 mr-2" />
                 Tanya via WhatsApp
@@ -369,7 +369,7 @@
                         <div 
                           class="bg-yellow-400 h-2 rounded-full"
                           :style="{ width: `${getStarPercentage(6-i)}%` }"
-                        ></div>
+                        />
                       </div>
                       <span class="text-sm text-gray-600 w-8">{{ Math.round(product.reviewCount * getStarPercentage(6-i) / 100) }}</span>
                     </div>
@@ -377,15 +377,20 @@
                 </div>
               </div>
 
-              <!-- Sample Reviews -->
-              <div class="space-y-4">
-                <div class="text-gray-600 text-center py-8">
-                  Belum ada ulasan untuk produk ini. Jadilah yang pertama memberikan ulasan!
-                </div>
-              </div>
+              <!-- Product Reviews -->
+              <ProductReviews 
+                :reviews="product.reviews" 
+                :rating="product.rating" 
+                :review-count="product.reviewCount" 
+              />
             </div>
           </template>
         </UTabs>
+
+        <!-- Related Products -->
+        <div class="mt-12">
+          <RelatedProducts :current-product="product" />
+        </div>
       </div>
     </div>
   </div>
@@ -410,6 +415,7 @@ import type { Product } from '~/types'
 
 // Use cart composable
 const { addToCart: addToCartAction } = useCart()
+const { toggleWishlist: toggleWishlistAction, isInWishlist: checkIsInWishlist } = useWishlist()
 
 // Get route params
 const route = useRoute()
@@ -422,7 +428,7 @@ const product = getProductBySlug(productSlug)
 const selectedImageIndex = ref(0)
 const selectedVariants = ref<Record<string, string>>({})
 const quantity = ref(1)
-const isInWishlist = ref(false)
+const isInWishlist = computed(() => product.value ? checkIsInWishlist(product.value.id) : false)
 const activeTab = ref(0)
 
 // Tab items
@@ -558,9 +564,8 @@ const decreaseQuantity = () => {
 }
 
 const toggleWishlist = () => {
-  isInWishlist.value = !isInWishlist.value
-  // TODO: Implement wishlist API call
-  console.log('Toggle wishlist for product:', product?.id)
+  if (!product.value) return
+  toggleWishlistAction(product.value)
 }
 
 const addToCart = () => {
