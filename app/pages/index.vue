@@ -109,39 +109,55 @@
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          <div class="bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow p-6">
-            <div class="bg-gray-200 rounded-lg aspect-square mb-4 flex items-center justify-center">
-              <UIcon name="i-lucide-backpack" class="w-12 h-12 text-gray-400" />
+          <div 
+            v-for="product in featuredProducts" 
+            :key="product.id"
+            class="bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow p-6"
+          >
+            <div class="bg-gray-200 rounded-lg aspect-square mb-4 flex items-center justify-center relative">
+              <UIcon name="i-lucide-image" class="w-12 h-12 text-gray-400" />
+              <!-- Sale badge -->
+              <div v-if="product.isOnSale" class="absolute top-2 right-2">
+                <span class="bg-red-600 text-white text-xs font-medium px-2 py-1 rounded">
+                  Sale {{ product.discount }}%
+                </span>
+              </div>
             </div>
-            <h3 class="text-lg font-semibold text-gray-900 mb-2">Tas Carrier 60L</h3>
-            <p class="text-gray-600 text-sm mb-4">Tas carrier berkualitas tinggi untuk pendakian multi-hari</p>
+            <div class="mb-2">
+              <span class="text-xs text-gray-500 uppercase tracking-wide">{{ product.brand }}</span>
+            </div>
+            <h3 class="text-lg font-semibold text-gray-900 mb-2">{{ product.name }}</h3>
+            <p class="text-gray-600 text-sm mb-4 line-clamp-2">{{ product.shortDescription }}</p>
+            <div class="mb-4">
+              <div class="flex items-center">
+                <UIcon 
+                  v-for="i in 5" 
+                  :key="i"
+                  name="i-lucide-star"
+                  :class="[
+                    'w-4 h-4',
+                    i <= Math.floor(product.rating) 
+                      ? 'text-yellow-400 fill-current' 
+                      : 'text-gray-300'
+                  ]"
+                />
+                <span class="ml-1 text-sm text-gray-600">{{ product.rating }}</span>
+              </div>
+            </div>
             <div class="flex items-center justify-between">
-              <span class="text-2xl font-bold text-emerald-600">Rp 850.000</span>
-              <UButton size="sm" color="emerald" label="Lihat Detail" />
-            </div>
-          </div>
-
-          <div class="bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow p-6">
-            <div class="bg-gray-200 rounded-lg aspect-square mb-4 flex items-center justify-center">
-              <UIcon name="i-lucide-tent" class="w-12 h-12 text-gray-400" />
-            </div>
-            <h3 class="text-lg font-semibold text-gray-900 mb-2">Tenda Ultralight 2P</h3>
-            <p class="text-gray-600 text-sm mb-4">Tenda ringan dan tahan cuaca untuk 2 orang</p>
-            <div class="flex items-center justify-between">
-              <span class="text-2xl font-bold text-emerald-600">Rp 1.250.000</span>
-              <UButton size="sm" color="emerald" label="Lihat Detail" />
-            </div>
-          </div>
-
-          <div class="bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow p-6">
-            <div class="bg-gray-200 rounded-lg aspect-square mb-4 flex items-center justify-center">
-              <UIcon name="i-lucide-compass" class="w-12 h-12 text-gray-400" />
-            </div>
-            <h3 class="text-lg font-semibold text-gray-900 mb-2">GPS Handheld</h3>
-            <p class="text-gray-600 text-sm mb-4">GPS navigasi handal untuk petualangan outdoor</p>
-            <div class="flex items-center justify-between">
-              <span class="text-2xl font-bold text-emerald-600">Rp 2.100.000</span>
-              <UButton size="sm" color="emerald" label="Lihat Detail" />
+              <div>
+                <span class="text-2xl font-bold text-emerald-600">{{ formatIDR(product.price) }}</span>
+                <span v-if="product.originalPrice" class="text-sm text-gray-500 line-through ml-2">
+                  {{ formatIDR(product.originalPrice) }}
+                </span>
+              </div>
+              <UButton 
+                size="sm" 
+                color="emerald" 
+                :to="`/products/${product.slug}`"
+              >
+                Lihat Detail
+              </UButton>
             </div>
           </div>
         </div>
@@ -235,3 +251,20 @@
     </section>
   </div>
 </template>
+
+<script setup lang="ts">
+import { getFeaturedProducts } from '~/data/products'
+import { formatIDR } from '~/utils/indonesian'
+
+// SEO
+useSeoMeta({
+  title: 'Puncak Adventura - Peralatan Outdoor Indonesia',
+  ogTitle: 'Puncak Adventura - Peralatan Outdoor Indonesia',
+  description: 'Toko peralatan outdoor terpercaya di Indonesia. Perlengkapan mountaineering, camping, hiking, dan climbing berkualitas tinggi untuk petualangan Anda.',
+  ogDescription: 'Toko peralatan outdoor terpercaya di Indonesia. Perlengkapan mountaineering, camping, hiking, dan climbing berkualitas tinggi untuk petualangan Anda.',
+  ogImage: '/images/og-home.jpg'
+})
+
+// Get featured products
+const featuredProducts = getFeaturedProducts()
+</script>
