@@ -59,13 +59,17 @@
 
           <!-- Cart -->
           <UButton
+            @click="toggleCart"
             color="neutral"
             variant="ghost"
             icon="i-lucide-shopping-cart"
             class="relative"
           >
-            <span class="absolute -top-2 -right-2 bg-emerald-600 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
-              0
+            <span 
+              v-if="itemCount > 0"
+              class="absolute -top-2 -right-2 bg-emerald-600 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center"
+            >
+              {{ itemCount > 99 ? '99+' : itemCount }}
             </span>
           </UButton>
 
@@ -137,7 +141,16 @@
 </template>
 
 <script setup lang="ts">
+// Mobile menu state
 const showMobileMenu = ref(false)
+
+// Cart functionality
+const { itemCount } = useCart()
+
+// Events
+const emit = defineEmits<{
+  'toggle-cart': []
+}>()
 
 const toggleMobileMenu = () => {
   showMobileMenu.value = !showMobileMenu.value
@@ -145,5 +158,9 @@ const toggleMobileMenu = () => {
 
 const closeMobileMenu = () => {
   showMobileMenu.value = false
+}
+
+const toggleCart = () => {
+  emit('toggle-cart')
 }
 </script>
