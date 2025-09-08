@@ -1,25 +1,237 @@
 <template>
-  <div class="flex flex-col items-center justify-center gap-4 h-screen">
-    <h1 class="font-bold text-2xl text-(--ui-primary)">
-      Nuxt UI - Starter
-    </h1>
+  <div>
+    <!-- Hero Section -->
+    <section class="relative bg-gradient-to-br from-emerald-700 via-emerald-600 to-green-700 text-white overflow-hidden">
+      <div class="absolute inset-0 bg-black/20"></div>
+      <div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-20 md:py-28">
+        <div class="text-center">
+          <h1 class="text-4xl md:text-6xl font-bold mb-6 leading-tight">
+            Petualangan Dimulai
+            <br class="hidden sm:block">
+            <span class="text-emerald-200">Dari Sini</span>
+          </h1>
+          <p class="text-xl md:text-2xl mb-8 text-emerald-100 max-w-3xl mx-auto">
+            Peralatan outdoor berkualitas tinggi untuk petualangan Anda di seluruh Nusantara. 
+            Dari puncak Semeru hingga pantai Raja Ampat.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <UButton
+              size="xl"
+              color="white"
+              variant="solid"
+              label="Jelajahi Produk"
+              icon="i-lucide-compass"
+              to="/products"
+            />
+            <UButton
+              size="xl"
+              color="emerald"
+              variant="outline"
+              label="Panduan Petualangan"
+              icon="i-lucide-map"
+              to="/adventure"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
 
-    <div class="flex items-center gap-2">
-      <UButton
-        label="Documentation"
-        icon="i-lucide-square-play"
-        to="https://ui.nuxt.com/getting-started/installation/nuxt"
-        target="_blank"
-      />
+    <!-- Featured Categories -->
+    <section class="py-16 bg-white">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+            Kategori Peralatan
+          </h2>
+          <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+            Temukan perlengkapan yang tepat untuk setiap jenis petualangan Anda
+          </p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div class="group cursor-pointer">
+            <div class="relative overflow-hidden rounded-lg bg-emerald-100 aspect-square">
+              <div class="absolute inset-0 bg-gradient-to-br from-emerald-500 to-green-600 opacity-90"></div>
+              <div class="relative p-6 h-full flex flex-col justify-center items-center text-center">
+                <UIcon name="i-lucide-mountain" class="w-12 h-12 text-white mb-4" />
+                <h3 class="text-xl font-bold text-white mb-2">Mountaineering</h3>
+                <p class="text-emerald-100 text-sm">Perlengkapan mendaki gunung</p>
+              </div>
+            </div>
+          </div>
 
-      <UButton
-        label="GitHub"
-        color="neutral"
-        variant="outline"
-        icon="i-simple-icons-github"
-        to="https://github.com/nuxt/ui"
-        target="_blank"
-      />
-    </div>
+          <div class="group cursor-pointer">
+            <div class="relative overflow-hidden rounded-lg bg-blue-100 aspect-square">
+              <div class="absolute inset-0 bg-gradient-to-br from-blue-500 to-indigo-600 opacity-90"></div>
+              <div class="relative p-6 h-full flex flex-col justify-center items-center text-center">
+                <UIcon name="i-lucide-tent" class="w-12 h-12 text-white mb-4" />
+                <h3 class="text-xl font-bold text-white mb-2">Camping</h3>
+                <p class="text-blue-100 text-sm">Peralatan berkemah</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="group cursor-pointer">
+            <div class="relative overflow-hidden rounded-lg bg-amber-100 aspect-square">
+              <div class="absolute inset-0 bg-gradient-to-br from-amber-500 to-orange-600 opacity-90"></div>
+              <div class="relative p-6 h-full flex flex-col justify-center items-center text-center">
+                <UIcon name="i-lucide-footprints" class="w-12 h-12 text-white mb-4" />
+                <h3 class="text-xl font-bold text-white mb-2">Hiking</h3>
+                <p class="text-amber-100 text-sm">Perlengkapan hiking</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="group cursor-pointer">
+            <div class="relative overflow-hidden rounded-lg bg-purple-100 aspect-square">
+              <div class="absolute inset-0 bg-gradient-to-br from-purple-500 to-pink-600 opacity-90"></div>
+              <div class="relative p-6 h-full flex flex-col justify-center items-center text-center">
+                <UIcon name="i-lucide-shirt" class="w-12 h-12 text-white mb-4" />
+                <h3 class="text-xl font-bold text-white mb-2">Pakaian</h3>
+                <p class="text-purple-100 text-sm">Pakaian outdoor</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Featured Products Preview -->
+    <section class="py-16 bg-gray-50">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+            Produk Unggulan
+          </h2>
+          <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+            Produk terpilih dengan kualitas terbaik untuk petualangan Anda
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div class="bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow p-6">
+            <div class="bg-gray-200 rounded-lg aspect-square mb-4 flex items-center justify-center">
+              <UIcon name="i-lucide-backpack" class="w-12 h-12 text-gray-400" />
+            </div>
+            <h3 class="text-lg font-semibold text-gray-900 mb-2">Tas Carrier 60L</h3>
+            <p class="text-gray-600 text-sm mb-4">Tas carrier berkualitas tinggi untuk pendakian multi-hari</p>
+            <div class="flex items-center justify-between">
+              <span class="text-2xl font-bold text-emerald-600">Rp 850.000</span>
+              <UButton size="sm" color="emerald" label="Lihat Detail" />
+            </div>
+          </div>
+
+          <div class="bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow p-6">
+            <div class="bg-gray-200 rounded-lg aspect-square mb-4 flex items-center justify-center">
+              <UIcon name="i-lucide-tent" class="w-12 h-12 text-gray-400" />
+            </div>
+            <h3 class="text-lg font-semibold text-gray-900 mb-2">Tenda Ultralight 2P</h3>
+            <p class="text-gray-600 text-sm mb-4">Tenda ringan dan tahan cuaca untuk 2 orang</p>
+            <div class="flex items-center justify-between">
+              <span class="text-2xl font-bold text-emerald-600">Rp 1.250.000</span>
+              <UButton size="sm" color="emerald" label="Lihat Detail" />
+            </div>
+          </div>
+
+          <div class="bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow p-6">
+            <div class="bg-gray-200 rounded-lg aspect-square mb-4 flex items-center justify-center">
+              <UIcon name="i-lucide-compass" class="w-12 h-12 text-gray-400" />
+            </div>
+            <h3 class="text-lg font-semibold text-gray-900 mb-2">GPS Handheld</h3>
+            <p class="text-gray-600 text-sm mb-4">GPS navigasi handal untuk petualangan outdoor</p>
+            <div class="flex items-center justify-between">
+              <span class="text-2xl font-bold text-emerald-600">Rp 2.100.000</span>
+              <UButton size="sm" color="emerald" label="Lihat Detail" />
+            </div>
+          </div>
+        </div>
+
+        <div class="text-center mt-12">
+          <UButton
+            size="lg"
+            color="emerald"
+            variant="outline"
+            label="Lihat Semua Produk"
+            icon="i-lucide-arrow-right"
+            to="/products"
+          />
+        </div>
+      </div>
+    </section>
+
+    <!-- Indonesian Destinations -->
+    <section class="py-16 bg-white">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+            Destinasi Petualangan Indonesia
+          </h2>
+          <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+            Jelajahi keindahan alam Indonesia dengan perlengkapan terpercaya
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div class="text-center">
+            <div class="bg-emerald-100 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-6">
+              <UIcon name="i-lucide-mountain-snow" class="w-10 h-10 text-emerald-600" />
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 mb-4">Gunung Semeru</h3>
+            <p class="text-gray-600">
+              Taklukkan Mahameru, puncak tertinggi di Pulau Jawa dengan peralatan mountaineering terbaik.
+            </p>
+          </div>
+
+          <div class="text-center">
+            <div class="bg-blue-100 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-6">
+              <UIcon name="i-lucide-waves" class="w-10 h-10 text-blue-600" />
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 mb-4">Raja Ampat</h3>
+            <p class="text-gray-600">
+              Eksplorasi surga bawah laut Indonesia dengan perlengkapan diving dan snorkeling berkualitas.
+            </p>
+          </div>
+
+          <div class="text-center">
+            <div class="bg-green-100 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-6">
+              <UIcon name="i-lucide-trees" class="w-10 h-10 text-green-600" />
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 mb-4">Taman Nasional Bromo</h3>
+            <p class="text-gray-600">
+              Nikmati sunrise spektakuler di Bromo dengan perlengkapan camping yang nyaman dan hangat.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-16 bg-emerald-600">
+      <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 text-center">
+        <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">
+          Siap Memulai Petualangan?
+        </h2>
+        <p class="text-xl text-emerald-100 mb-8 max-w-2xl mx-auto">
+          Dapatkan konsultasi gratis dari ahli kami untuk memilih perlengkapan yang tepat 
+          sesuai dengan rencana petualangan Anda.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <UButton
+            size="xl"
+            color="white"
+            variant="solid"
+            label="Konsultasi Gratis"
+            icon="i-lucide-message-circle"
+          />
+          <UButton
+            size="xl"
+            color="emerald"
+            variant="outline"
+            label="WhatsApp Kami"
+            icon="i-simple-icons-whatsapp"
+          />
+        </div>
+      </div>
+    </section>
   </div>
 </template>
