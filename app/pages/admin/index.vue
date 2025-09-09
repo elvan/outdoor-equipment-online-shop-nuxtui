@@ -46,7 +46,7 @@
           
           <!-- External Admin Pages -->
           <div class="ml-8 border-l border-gray-200 pl-8">
-            <div class="flex space-x-4">
+            <div class="flex flex-wrap gap-4">
               <NuxtLink 
                 to="/admin/analytics"
                 class="py-2 px-4 text-sm font-medium text-gray-500 hover:text-emerald-600 transition-colors flex items-center"
@@ -60,6 +60,20 @@
               >
                 <UIcon name="i-lucide-megaphone" class="w-4 h-4 mr-2" />
                 Marketing
+              </NuxtLink>
+              <NuxtLink 
+                to="/admin/reports"
+                class="py-2 px-4 text-sm font-medium text-gray-500 hover:text-emerald-600 transition-colors flex items-center"
+              >
+                <UIcon name="i-lucide-file-bar-chart" class="w-4 h-4 mr-2" />
+                Reports
+              </NuxtLink>
+              <NuxtLink 
+                to="/admin/financial"
+                class="py-2 px-4 text-sm font-medium text-gray-500 hover:text-emerald-600 transition-colors flex items-center"
+              >
+                <UIcon name="i-lucide-wallet" class="w-4 h-4 mr-2" />
+                Financial
               </NuxtLink>
             </div>
           </div>
