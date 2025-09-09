@@ -75,6 +75,27 @@
                 <UIcon name="i-lucide-wallet" class="w-4 h-4 mr-2" />
                 Financial
               </NuxtLink>
+              <NuxtLink 
+                to="/admin/promotions"
+                class="py-2 px-4 text-sm font-medium text-gray-500 hover:text-emerald-600 transition-colors flex items-center"
+              >
+                <UIcon name="i-lucide-tag" class="w-4 h-4 mr-2" />
+                Promotions
+              </NuxtLink>
+              <NuxtLink 
+                to="/admin/social"
+                class="py-2 px-4 text-sm font-medium text-gray-500 hover:text-emerald-600 transition-colors flex items-center"
+              >
+                <UIcon name="i-lucide-share-2" class="w-4 h-4 mr-2" />
+                Social Media
+              </NuxtLink>
+              <NuxtLink 
+                to="/admin/automation"
+                class="py-2 px-4 text-sm font-medium text-gray-500 hover:text-emerald-600 transition-colors flex items-center"
+              >
+                <UIcon name="i-lucide-zap" class="w-4 h-4 mr-2" />
+                Automation
+              </NuxtLink>
             </div>
           </div>
         </nav>
