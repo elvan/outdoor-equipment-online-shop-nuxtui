@@ -78,6 +78,7 @@
             color="neutral"
             variant="ghost"
             icon="i-lucide-user"
+            @click="navigateTo('/account')"
           />
 
           <!-- Mobile Menu Toggle -->
