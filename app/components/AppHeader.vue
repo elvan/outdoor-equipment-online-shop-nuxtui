@@ -73,12 +73,22 @@
             </span>
           </UButton>
 
+          <!-- Admin Access (for demo purposes) -->
+          <UButton
+            color="emerald"
+            variant="ghost"
+            icon="i-lucide-settings"
+            @click="navigateTo('/admin')"
+            title="Admin Dashboard"
+          />
+
           <!-- Account -->
           <UButton
             color="neutral"
             variant="ghost"
             icon="i-lucide-user"
             @click="navigateTo('/account')"
+            title="My Account"
           />
 
           <!-- Mobile Menu Toggle -->
@@ -136,6 +146,16 @@
         >
           Tentang
         </NuxtLink>
+        <div class="border-t border-gray-200 pt-3 mt-3">
+          <NuxtLink 
+            to="/admin" 
+            class="block text-emerald-600 hover:text-emerald-700 font-medium transition-colors"
+            @click="closeMobileMenu"
+          >
+            <UIcon name="i-lucide-settings" class="w-4 h-4 mr-2 inline-block" />
+            Admin Dashboard
+          </NuxtLink>
+        </div>
       </div>
     </div>
   </header>
